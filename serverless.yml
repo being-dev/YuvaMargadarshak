@@ -3,7 +3,7 @@ service: yuva-margadarshak
 provider: 
   name: aws
   runtime: java8
-  stage: dev
+  stage: prod
   region: ap-southeast-1
   lambdaHashingVersion: 20201221    
   iam: 
