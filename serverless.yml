@@ -1,0 +1,22 @@
+service: yuva-margadarshak
+
+provider: 
+  name: aws
+  runtime: java8
+  stage: dev
+  region: ap-southeast-1
+  lambdaHashingVersion: 20201221    
+  iam: 
+    role: arn:aws:iam::370264786290:role/ym_dev_role
+  
+package:
+  artifact: target/yuva-margadarshak.jar
+
+functions:
+  ymRequest: 
+    handler: com.ym.aws.function.YMRequestHandler
+    events:
+      - http: 
+          path: /api/v1/secure/{module}/{action}
+          method: post 
+          cors: true       
