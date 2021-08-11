@@ -92,14 +92,13 @@ public class UserDAOImpl extends AbstractDAO<User> implements IUserDAO {
 	}
 
 	@Override
-	public void validateToken(String userName,String token) throws YMException {
+	public void validateToken(String userName, String token) throws YMException {
 		try {
-
 			Map<String, Object> valueMap = new HashMap<String, Object>();
 			valueMap.put(":userName", userName);
-			valueMap.put(":token", new AttributeValue().withS(token));
+			valueMap.put(":token", token);
 
-			QuerySpec criteria = new QuerySpec().withKeyConditionExpression("user_name = :userName")
+			QuerySpec criteria = new QuerySpec().withKeyConditionExpression("user_name= :userName")
 					.withFilterExpression("user_token = :token").withValueMap(valueMap);
 			ItemCollection<QueryOutcome> items = getTable().query(criteria);
 			Iterator<Item> iterator = items.iterator();
@@ -108,8 +107,9 @@ public class UserDAOImpl extends AbstractDAO<User> implements IUserDAO {
 			}
 
 		} catch (Exception ex) {
-			throw new YMException(String.format("Unable to validate user token for user %s. Please try again later.",
-					userName));
+			ex.printStackTrace();
+			throw new YMException(
+					String.format("Unable to validate user token for user %s. Please try again later.", userName));
 		}
 	}
 
