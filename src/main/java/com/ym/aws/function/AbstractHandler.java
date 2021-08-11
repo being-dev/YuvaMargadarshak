@@ -123,7 +123,6 @@ public abstract class AbstractHandler implements RequestHandler<APIGatewayProxyR
 
 	public final void authenticateUser() throws YMException {
 		String token = request.getHeaders().get("Authorization");
-		context.getLogger().log("Request :" + request);
 		try {
 			if (StringUtils.isNullOrEmpty(token)) {
 				throw new YMException(

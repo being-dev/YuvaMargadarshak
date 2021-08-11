@@ -65,7 +65,7 @@ public class YMRequestHandler extends AbstractHandler {
 		case YMConstants.Modules.ADMIN:
 			if (YMConstants.Actions.GET_ALL.equals(action)) {
 				try {
-					// authenticateUser();
+					authenticateUser();
 					List<Registration> registrations = iYuvaMargdarshakService.getAllRegistrations();
 					buildResponse(HttpStatus.SC_OK, Utility.toJson(registrations));
 				} catch (YMException ex) {
@@ -73,7 +73,7 @@ public class YMRequestHandler extends AbstractHandler {
 				}
 			} else if (YMConstants.Actions.QUERY_ALL.equals(action)) {
 				try {
-					// authenticateUser();
+					authenticateUser();
 					List<ContactUs> queries = iYuvaMargdarshakService.getAllQueries();
 					buildResponse(HttpStatus.SC_OK, Utility.toJson(queries));
 				} catch (YMException ex) {
