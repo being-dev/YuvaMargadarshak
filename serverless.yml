@@ -19,4 +19,7 @@ functions:
       - http: 
           path: /api/v1/secure/{module}/{action}
           method: post 
-          cors: true       
+          cors:
+            origin: '*'
+            headers:
+              - Authorization
